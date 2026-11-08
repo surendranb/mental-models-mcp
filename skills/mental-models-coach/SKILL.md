@@ -85,7 +85,7 @@ Apply the diagnostic probing questions from the playbook to interrogate the prob
 ## Progressive References
 
 Deepen your reasoning by loading specialized references on demand:
-- **Master Taxonomy (122 Models):** Read [references/taxonomy.md](references/taxonomy.md) for the complete multi-disciplinary index spanning Systems Thinking, Decision Analysis, Strategic Risk, Cognitive Biases, Computer Systems, Microeconomics, Evolutionary Biology, and Physics.
+- **Master Taxonomy (150 Models):** Read [references/taxonomy.md](references/taxonomy.md) for the complete multi-disciplinary index spanning Systems Thinking, Decision Analysis, Strategic Risk, Cognitive Biases, Computer Systems, Microeconomics, Evolutionary Biology, Physics, Military Strategy, Cryptography, Capital Allocation, and Organizations.
 - **Dialectical Pairs:** Read [references/dialectical-pairs.md](references/dialectical-pairs.md) for the counter-model tension matrix balancing competing heuristics.
 - **Failure Boundaries:** Read [references/failure-boundaries.md](references/failure-boundaries.md) for systematic blindspot prevention and criteria for when models fail.
 - **Curated Primary Sources:** Read [references/curated-sources.md](references/curated-sources.md) for original historical citations, foundational academic papers, and canonical literature.

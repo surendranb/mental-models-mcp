@@ -88,7 +88,7 @@ async def test_stdio_server_e2e():
 
             tax_read_res = await session.call_tool("skill_read", arguments={"name": "taxonomy"})
             assert not tax_read_res.is_error
-            assert "122 Models Across 8 Disciplines" in tax_read_res.content[0].text
+            assert "150 Models Across 12 Disciplines" in tax_read_res.content[0].text
 
             # 8. Call check_for_updates
             up_res = await session.call_tool("check_for_updates", arguments={})

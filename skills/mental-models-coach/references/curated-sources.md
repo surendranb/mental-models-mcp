@@ -57,3 +57,43 @@ This reference catalogs the foundational academic papers, seminal texts, and arc
 - **Taleb, Nassim Nicholas** (2007). *The Black Swan: The Impact of the Highly Improbable*. Random House.
 - **Taleb, Nassim Nicholas** (2012). *Antifragile: Things That Gain from Disorder*. Random House.
 - **Taleb, Nassim Nicholas** (2018). *Skin in the Game: Hidden Asymmetries in Daily Life*. Random House.
+
+---
+
+## 5. Military Strategy, Operational Art & Adversarial Conflict
+- **Sun Tzu** (c. 5th century BC). *The Art of War* (*Sunzi Bingfa*). Translated by Lionel Giles (1910).
+- **Clausewitz, Carl von** (1832). *Vom Kriege* (*On War*). Dümmlers Verlag.
+- **Lanchester, Frederick W.** (1916). *Aircraft in Warfare: The Dawn of the Fourth Arm*. Constable and Company.
+- **Boyd, John R.** (1976 / 1986). *Destruction and Creation* & *Patterns of Conflict*. Unpublished briefings and monographs, U.S. Air Force.
+
+---
+
+## 6. Information Security, Cryptography & Systems Assurance
+- **Kerckhoffs, Auguste** (1883). "La Cryptographie Militaire." *Journal des Sciences Militaires*, 9th series, 9, 5–38.
+- **Shannon, Claude E.** (1949). "Communication Theory of Secrecy Systems." *Bell System Technical Journal*, 28(4), 656–715.
+- **Saltzer, Jerome H., & Schroeder, Michael D.** (1975). "The Protection of Information in Computer Systems." *Proceedings of the IEEE*, 63(9), 1278–1308.
+- **Hardy, Norman** (1988). "The Confused Deputy: (or why capability-based systems are more like the real world)." *ACM SIGOPS Operating Systems Review*, 22(4), 36–38.
+- **Kindervag, John** (2010). *Build Security Into Your Network's DNA: The Zero Trust Network Architecture*. Forrester Research.
+
+---
+
+## 7. Finance, Capital Allocation & Macroeconomics
+- **Keynes, John Maynard** (1936). *The General Theory of Employment, Interest and Money*. Macmillan Cambridge University Press.
+- **Markowitz, Harry** (1952). "Portfolio Selection." *Journal of Finance*, 7(1), 77–91.
+- **Kelly, John L. Jr.** (1956). "A New Interpretation of Information Rate." *Bell System Technical Journal*, 35(4), 917–926.
+- **Thorp, Edward O.** (1962). *Beat the Dealer: A Winning Strategy for the Game of Twenty-One*. Blaisdell Publishing.
+- **Minsky, Hyman P.** (1982). *Can "It" Happen Again? Essays on Instability and Finance*. M.E. Sharpe.
+- **Soros, George** (1987). *The Alchemy of Finance: Reading the Mind of the Market*. Simon & Schuster.
+
+---
+
+## 8. Sociology, Organizations, Cybernetics & Performance
+- **Yerkes, Robert M., & Dodson, John D.** (1908). "The relation of strength of stimulus to rapidity of habit-formation." *Journal of Comparative Neurology and Psychology*, 18(5), 459–482.
+- **Michels, Robert** (1911). *Zur Soziologie des Parteiwesens in der modernen Demokratie*. Werner Klinkhardt.
+- **Ashby, W. Ross** (1956). *An Introduction to Cybernetics*. Chapman & Hall.
+- **Price, Derek J. de Solla** (1963). *Little Science, Big Science*. Columbia University Press.
+- **Peter, Laurence J., & Hull, Raymond** (1969). *The Peter Principle: Why Things Always Go Wrong*. William Morrow and Company.
+- **Peltzman, Sam** (1975). "The Effects of Automobile Safety Regulation." *Journal of Political Economy*, 83(4), 677–725.
+- **Dunbar, Robin I. M.** (1992). "Neocortex size as a constraint on group size in primates." *Journal of Human Evolution*, 22(6), 469–493.
+- **Crichton, Michael** (2002). "Why Speculate?" Speech before the International Leadership Forum, La Jolla, California.
+- **Abadi, Daniel J.** (2012). "Consistency Tradeoffs in Modern Distributed Database System Design: CAP is Only Part of the Story." *Computer*, 45(2), 37–42.
