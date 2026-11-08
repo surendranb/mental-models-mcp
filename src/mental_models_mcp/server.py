@@ -4,6 +4,7 @@ from __future__ import annotations
 import functools
 import json
 import os
+import re
 import sys
 import time
 import urllib.request
@@ -203,47 +204,58 @@ def list_mental_models(category: str = "", discipline: str = "") -> str:
 
 @tool()
 def skills_list() -> str:
-    """List starter skills (dynamic, GitHub-first)."""
+    """List starter skills and agentskills.io packages (dynamic, GitHub-first)."""
     try:
         local_skills_dir = Path(__file__).resolve().parents[2] / "skills"
-        local = sorted(p.stem for p in local_skills_dir.glob("*.md")) if local_skills_dir.exists() else []
+        local_files = [p.stem for p in local_skills_dir.glob("*.md")] if local_skills_dir.exists() else []
+        local_dirs = [p.name for p in local_skills_dir.iterdir() if p.is_dir() and (p / "SKILL.md").exists()] if local_skills_dir.exists() else []
     except Exception:
-        local = []
-    names = set(local or [])
+        local_files, local_dirs = [], []
+    names = set(local_files + local_dirs)
     names.add("setup")
     names.add("mental_models_setup")
+    names.add("mental-models-coach")
     names_sorted = sorted(names)
     track_event("skill_read", {"action": "skills_list", "count": len(names_sorted)})
-    return json.dumps({"skills": names_sorted, "source": "github+local"}, indent=2)
+    return json.dumps({"skills": names_sorted, "standard": "agentskills.io", "source": "github+local"}, indent=2)
 
 
 @tool()
 def skill_read(name: str) -> str:
-    """Fetch SKILL.md by name from GitHub, fallback to local file."""
+    """Fetch SKILL.md or reference guide by name from GitHub, fallback to local file."""
     t0 = time.perf_counter()
     raw = (name or "").strip().lower()
     if raw.endswith(".md"):
         raw = raw[:-3]
-    if raw in ("setup", "mental-models-setup", "mental_models_setup", "mental-setup", "mental_setup"):
-        safe = "setup"
-    else:
-        safe = "".join(c for c in raw if c.isalnum() or c in ("_", "-"))
 
-    if not safe:
-        duration_ms = (time.perf_counter() - t0) * 1000
-        out = "[INPUT_FIXABLE] Empty skill name. Call skills_list first."
-        track_tool_call(
-            tool_name="skill_read",
-            duration_ms=duration_ms,
-            status="error",
-            error_category="ValidationError",
-            error_message=out,
-        )
-        return out
+    # Normalize canonical aliases
+    if raw in ("setup", "mental-models-setup", "mental_models_setup", "mental-setup", "mental_setup"):
+        target_path = "setup.md"
+    elif raw in ("mental-models-coach", "mental-models", "coach", "mental_models_coach"):
+        target_path = "mental-models-coach/SKILL.md"
+    elif raw in ("taxonomy", "master-taxonomy", "models-taxonomy", "references/taxonomy"):
+        target_path = "mental-models-coach/references/taxonomy.md"
+    elif raw in ("dialectical-pairs", "counter-models", "references/dialectical-pairs"):
+        target_path = "mental-models-coach/references/dialectical-pairs.md"
+    elif raw in ("failure-boundaries", "references/failure-boundaries"):
+        target_path = "mental-models-coach/references/failure-boundaries.md"
+    elif raw in ("curated-sources", "sources", "references/curated-sources"):
+        target_path = "mental-models-coach/references/curated-sources.md"
+    else:
+        # Sanitize general relative path
+        safe_parts = [re.sub(r"[^\w\-]", "", part) for part in raw.split("/") if part]
+        if not safe_parts:
+            duration_ms = (time.perf_counter() - t0) * 1000
+            out = "[INPUT_FIXABLE] Empty skill name. Call skills_list first."
+            track_tool_call(tool_name="skill_read", duration_ms=duration_ms, status="error", error_category="ValidationError", error_message=out)
+            return out
+        target_path = "/".join(safe_parts)
+        if not target_path.endswith(".md"):
+            target_path += ".md"
 
     # 1. Fetch from GitHub raw
     try:
-        url = f"{SKILLS_URL}/{safe}.md"
+        url = f"{SKILLS_URL}/{target_path}"
         req = urllib.request.Request(url, headers={"User-Agent": "mental-models-mcp"})
         with urllib.request.urlopen(req, timeout=5.0) as r:
             text = r.read().decode("utf-8", "replace")
@@ -252,7 +264,7 @@ def skill_read(name: str) -> str:
         return text
     except Exception:
         # 2. Local fallback
-        local_path = Path(__file__).resolve().parents[2] / "skills" / f"{safe}.md"
+        local_path = Path(__file__).resolve().parents[2] / "skills" / target_path
         if local_path.exists():
             text = local_path.read_text(encoding="utf-8")
             duration_ms = (time.perf_counter() - t0) * 1000
@@ -261,7 +273,7 @@ def skill_read(name: str) -> str:
 
         duration_ms = (time.perf_counter() - t0) * 1000
         out = (
-            f"[INPUT_FIXABLE] Unknown skill '{name}'. Candidates: call skills_list. "
+            f"[INPUT_FIXABLE] Unknown skill or reference '{name}'. Candidates: call skills_list. "
             f"If network is blocked: [TRANSIENT] retry, or [ENVIRONMENT_FIXABLE: STOP & ASK HUMAN] if GitHub is unreachable."
         )
         track_tool_call(
