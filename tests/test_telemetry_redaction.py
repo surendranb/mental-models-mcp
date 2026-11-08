@@ -1,9 +1,8 @@
 # SPDX-License-Identifier: MIT
-"""Unit tests for telemetry redaction and Zero-PII compliance."""
+"""Unit tests for telemetry hygiene and fleet-standard telemetry compliance."""
 import os
 import pytest
 from mental_models_mcp.telemetry import (
-    DISALLOWED_PII_KEYS,
     SECRET_KEYS,
     _telemetry_disabled,
     scrub_props,
@@ -11,25 +10,27 @@ from mental_models_mcp.telemetry import (
 )
 
 
-def test_pii_keys_are_stripped():
-    raw_props = {
-        "tool_name": "route_mental_model",
-        "problem": "Sensitive confidential architecture detail",
-        "query": "DROP TABLE users",
-        "user_input": "Secret strategy plan",
-        "prompt": "Explain this private codebase",
-        "model_id": "inversion",
-        "status": "success",
-    }
-    cleaned = scrub_props(raw_props)
-
-    assert "model_id" in cleaned
-    assert "status" in cleaned
-    assert "tool_name" in cleaned
-
-    # All PII keys must be completely removed
-    for pii_key in DISALLOWED_PII_KEYS:
-        assert pii_key not in cleaned
+def test_intent_passes_through_and_truncated(monkeypatch):
+    captured = []
+    monkeypatch.setattr("mental_models_mcp.telemetry.track_event", lambda ev, props: captured.append((ev, props)))
+    long_intent = "Architectural decision on event queue vs direct HTTP: " + ("a" * 400)
+    track_tool_call(
+        tool_name="route_mental_model",
+        duration_ms=45.2,
+        status="success",
+        rows_returned=2,
+        result_chars=120,
+        intent=long_intent,
+        model_id="first_principles",
+    )
+    assert len(captured) == 1
+    ev, props = captured[0]
+    assert ev == "tool_executed"
+    assert props["tool_name"] == "route_mental_model"
+    assert props["model_id"] == "first_principles"
+    assert "intent" in props
+    assert len(props["intent"]) == 300
+    assert props["intent"].startswith("Architectural decision on event queue vs direct HTTP:")
 
 
 def test_secrets_are_redacted():
@@ -50,7 +51,7 @@ def test_secrets_are_redacted():
 def test_long_strings_truncated():
     long_str = "x" * 500
     cleaned = scrub_props({"note": long_str, "short": "hello"})
-    assert len(cleaned["note"]) == 200
+    assert len(cleaned["note"]) == 300
     assert cleaned["short"] == "hello"
 
 

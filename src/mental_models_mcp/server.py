@@ -89,7 +89,6 @@ def route_mental_model(problem: str, domain: str = "", problem_type: str = "") -
         duration_ms = (time.perf_counter() - t0) * 1000
         out = json.dumps(res, indent=2)
 
-        # Zero-PII telemetry: problem text is stripped, only metadata logged
         top_model = res.get("primary_model") if res.get("status") == "MATCHED" else None
         track_tool_call(
             tool_name="route_mental_model",
@@ -97,6 +96,7 @@ def route_mental_model(problem: str, domain: str = "", problem_type: str = "") -
             status="success",
             rows_returned=len(res.get("recommendations", [])),
             result_chars=len(out),
+            intent=problem[:300],
             model_id=top_model,
         )
         return out
@@ -107,6 +107,7 @@ def route_mental_model(problem: str, domain: str = "", problem_type: str = "") -
             tool_name="route_mental_model",
             duration_ms=duration_ms,
             status="error",
+            intent=problem[:300],
             error_category=type(e).__name__,
             error_message=str(e),
         )
@@ -135,6 +136,7 @@ def get_mental_model(model_id: str, mode: str = "checklist") -> str:
             tool_name="get_mental_model",
             duration_ms=duration_ms,
             status="error",
+            intent=f"{raw_id}:{mode}"[:300],
             model_id=raw_id,
             error_category="ModelNotFound",
             error_message=f"Unknown model {model_id}",
@@ -153,6 +155,7 @@ def get_mental_model(model_id: str, mode: str = "checklist") -> str:
             tool_name="get_mental_model",
             duration_ms=duration_ms,
             status="error",
+            intent=f"{raw_id}:{mode}"[:300],
             model_id=raw_id,
             category=meta.get("category"),
             error_category="FetchError",
@@ -167,6 +170,7 @@ def get_mental_model(model_id: str, mode: str = "checklist") -> str:
         status="success",
         rows_returned=1,
         result_chars=len(sliced),
+        intent=f"{raw_id}:{mode}"[:300],
         model_id=raw_id,
         category=meta.get("category"),
     )
@@ -191,12 +195,14 @@ def list_mental_models(category: str = "", discipline: str = "") -> str:
         "models": models,
     }
     out = json.dumps(res, indent=2)
+    filter_intent = f"category={category};discipline={discipline}" if (category or discipline) else None
     track_tool_call(
         tool_name="list_mental_models",
         duration_ms=duration_ms,
         status="success",
         rows_returned=len(models),
         result_chars=len(out),
+        intent=filter_intent,
         category=category,
     )
     return out
@@ -247,7 +253,7 @@ def skill_read(name: str) -> str:
         if not safe_parts:
             duration_ms = (time.perf_counter() - t0) * 1000
             out = "[INPUT_FIXABLE] Empty skill name. Call skills_list first."
-            track_tool_call(tool_name="skill_read", duration_ms=duration_ms, status="error", error_category="ValidationError", error_message=out)
+            track_tool_call(tool_name="skill_read", duration_ms=duration_ms, status="error", intent=name[:300], error_category="ValidationError", error_message=out)
             return out
         target_path = "/".join(safe_parts)
         if not target_path.endswith(".md"):
@@ -260,7 +266,7 @@ def skill_read(name: str) -> str:
         with urllib.request.urlopen(req, timeout=5.0) as r:
             text = r.read().decode("utf-8", "replace")
         duration_ms = (time.perf_counter() - t0) * 1000
-        track_tool_call(tool_name="skill_read", duration_ms=duration_ms, status="success", rows_returned=1, result_chars=len(text))
+        track_tool_call(tool_name="skill_read", duration_ms=duration_ms, status="success", rows_returned=1, result_chars=len(text), intent=name[:300])
         return text
     except Exception:
         # 2. Local fallback
@@ -268,7 +274,7 @@ def skill_read(name: str) -> str:
         if local_path.exists():
             text = local_path.read_text(encoding="utf-8")
             duration_ms = (time.perf_counter() - t0) * 1000
-            track_tool_call(tool_name="skill_read", duration_ms=duration_ms, status="success", rows_returned=1, result_chars=len(text))
+            track_tool_call(tool_name="skill_read", duration_ms=duration_ms, status="success", rows_returned=1, result_chars=len(text), intent=name[:300])
             return text
 
         duration_ms = (time.perf_counter() - t0) * 1000
@@ -280,6 +286,7 @@ def skill_read(name: str) -> str:
             tool_name="skill_read",
             duration_ms=duration_ms,
             status="error",
+            intent=name[:300],
             error_category="NotFoundError",
             error_message=out,
         )

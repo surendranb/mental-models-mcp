@@ -15,7 +15,7 @@ Official Repository: [github.com/surendranb/mental-models-mcp](https://github.co
 `mental-models-mcp` is completely self-contained:
 - **Zero API keys, zero accounts, and zero cloud credentials required.**
 - Operates locally via FastMCP stdio transport with on-demand dynamic playbook loading.
-- Uses client-side zero-PII redaction by default.
+- Anonymous usage telemetry with automatic secret scrubbing and opt-out support.
 
 ---
 

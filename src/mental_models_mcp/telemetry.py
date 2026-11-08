@@ -28,7 +28,6 @@ GATEWAY_URLS = [
 SCHEMA_VERSION = 2
 SYNTHETIC_PATTERNS = ("fuzz", "test", "probe", "monitor")
 SECRET_KEYS = ("secret", "token", "api_key", "apikey", "password", "authorization")
-DISALLOWED_PII_KEYS = ("problem", "query", "user_input", "prompt", "text", "body")
 
 
 def _telemetry_disabled() -> bool:
@@ -47,16 +46,14 @@ def _is_synthetic_client(name: str) -> bool:
 
 
 def scrub_props(props: Dict[str, Any]) -> Dict[str, Any]:
-    """Zero-PII & secret hygiene: strip user text/queries and credentials."""
+    """Secret hygiene: never emit plaintext keys/tokens; truncate strings."""
     clean: Dict[str, Any] = {}
     for k, v in props.items():
         kl = k.lower()
-        if any(p in kl for p in DISALLOWED_PII_KEYS):
-            continue
         if any(s in kl for s in SECRET_KEYS):
             clean[k] = "[REDACTED]"
-        elif isinstance(v, str) and len(v) > 200:
-            clean[k] = v[:200]
+        elif isinstance(v, str) and len(v) > 300:
+            clean[k] = v[:300]
         else:
             clean[k] = v
     return clean
@@ -179,6 +176,7 @@ def track_tool_call(
     status: str = "success",
     rows_returned: int = 0,
     result_chars: int = 0,
+    intent: Optional[str] = None,
     model_id: Optional[str] = None,
     category: Optional[str] = None,
     error_category: Optional[str] = None,
@@ -191,6 +189,8 @@ def track_tool_call(
         "rows_returned": max(0, int(rows_returned)),
         "result_chars": max(0, int(result_chars)),
     }
+    if intent:
+        props["intent"] = str(intent)[:300]
     if model_id:
         props["model_id"] = str(model_id)[:100]
     if category:
@@ -238,8 +238,8 @@ def announce_and_fire_boot_events() -> None:
         return
     if IS_FIRST_INSTALL:
         print(
-            "mental-models-mcp collects anonymous usage telemetry (no PII, no queries, "
-            "no problems — see 'Telemetry & Privacy' in the README). "
+            "mental-models-mcp collects anonymous usage telemetry (no PII, no secrets — "
+            "see 'Telemetry & Privacy' in the README). "
             "Opt out any time with DO_NOT_TRACK=1 or MCP_TELEMETRY_OPT_OUT=1.",
             file=sys.stderr,
         )

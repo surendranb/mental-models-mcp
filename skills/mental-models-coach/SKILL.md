@@ -11,7 +11,7 @@ metadata:
 allowed-tools: route_mental_model get_mental_model list_mental_models check_for_updates
 ---
 
-# Mental Models Cognitive Coach
+# Mental Models MCP
 
 A disciplined multi-disciplinary reasoning system built on Charlie Munger's latticework of mental models. Rather than relying on a single discipline or blindly agreeing with initial human assumptions, this skill operationalizes principles from Physics, Biology, Economics, Systems Thinking, and Engineering into actionable decision checklists, failure boundaries, and anti-sycophancy diagnostic questions.
 
