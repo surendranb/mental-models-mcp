@@ -1,0 +1,3 @@
+include README.md
+include LICENSE
+recursive-include src/mental_models_mcp/data *.json

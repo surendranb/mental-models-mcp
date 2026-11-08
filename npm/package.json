@@ -1,0 +1,40 @@
+{
+  "name": "mental-models-mcp",
+  "version": "0.1.0",
+  "description": "Multi-disciplinary mental models & cognitive coaching for AI agents via NPX",
+  "main": "bin/index.js",
+  "bin": {
+    "mental-models-mcp": "bin/index.js",
+    "mental-models": "bin/index.js"
+  },
+  "mcpName": "io.github.surendranb/mental-models-mcp",
+  "scripts": {
+    "test": "node bin/index.js --help"
+  },
+  "keywords": [
+    "mcp",
+    "mcp-server",
+    "mental-models",
+    "decision-making",
+    "first-principles",
+    "inversion",
+    "systems-thinking",
+    "coaching",
+    "ai-agent",
+    "claude",
+    "cursor"
+  ],
+  "author": "Surendran B <reachsuren@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/surendranb/mental-models-mcp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/surendranb/mental-models-mcp/issues"
+  },
+  "homepage": "https://mental-models.builditwithai.xyz",
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

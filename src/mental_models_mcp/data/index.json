@@ -1,0 +1,287 @@
+{
+  "version": "1.0.0",
+  "categories": [
+    "systems_thinking",
+    "decision_analysis",
+    "strategic_risk",
+    "cognitive_biases",
+    "first_principles_engineering"
+  ],
+  "models": [
+    {
+      "id": "feedback_loops",
+      "title": "Feedback Loops",
+      "category": "systems_thinking",
+      "discipline": "Systems Science & Control Theory",
+      "problem_types": ["diagnose", "understand", "optimize"],
+      "domains": ["software", "business", "architecture"],
+      "triggers": ["runaway growth", "oscillations", "lag", "delayed effect", "reinforcing", "balancing loop", "vicious cycle"],
+      "description": "Examine self-reinforcing (amplifying) and balancing (stabilizing) loops, and account for feedback delays that cause overshooting.",
+      "path": "models/systems_thinking/feedback_loops.md"
+    },
+    {
+      "id": "bottleneck_theory_of_constraints",
+      "title": "Theory of Constraints (Bottlenecks)",
+      "category": "systems_thinking",
+      "discipline": "Operations Research & Manufacturing",
+      "problem_types": ["diagnose", "optimize"],
+      "domains": ["software", "architecture", "business"],
+      "triggers": ["slow pipeline", "throughput", "capacity", "queue buildup", "binding constraint", "bottleneck"],
+      "description": "Any manageable system is limited in achieving more of its goals by a very small number of constraints. Optimizing non-bottlenecks is an illusion.",
+      "path": "models/systems_thinking/bottleneck_theory_of_constraints.md"
+    },
+    {
+      "id": "tragedy_of_the_commons",
+      "title": "Tragedy of the Commons",
+      "category": "systems_thinking",
+      "discipline": "Ecology & Political Economy",
+      "problem_types": ["diagnose", "risk", "understand"],
+      "domains": ["software", "business", "architecture"],
+      "triggers": ["shared resource", "quota exhaustion", "free rider", "resource drain", "rate limit shared"],
+      "description": "Individuals with open access to a shared resource act independently according to their own self-interest, depleting or spoiling that resource.",
+      "path": "models/systems_thinking/tragedy_of_the_commons.md"
+    },
+    {
+      "id": "leverage_points",
+      "title": "Places to Intervene in a System",
+      "category": "systems_thinking",
+      "discipline": "Systems Dynamics (Donella Meadows)",
+      "problem_types": ["optimize", "strategy", "decide"],
+      "domains": ["software", "architecture", "business"],
+      "triggers": ["high impact intervention", "change rules", "system goals", "where to focus", "paradigm shift"],
+      "description": "Meadows' 12-tier hierarchy of leverage points: parameters and buffers have low leverage; information flows, rules, goals, and paradigms have high leverage.",
+      "path": "models/systems_thinking/leverage_points.md"
+    },
+    {
+      "id": "second_order_thinking",
+      "title": "Second-Order Thinking",
+      "category": "systems_thinking",
+      "discipline": "Philosophy & Decision Science",
+      "problem_types": ["decide", "risk", "understand"],
+      "domains": ["software", "business", "strategy", "personal"],
+      "triggers": ["and then what", "unintended consequences", "downstream effects", "side effect", "future impact"],
+      "description": "Thinking beyond immediate first-order payoffs to evaluate the downstream consequences, cascading ripples, and feedback reactions.",
+      "path": "models/systems_thinking/second_order_thinking.md"
+    },
+    {
+      "id": "inversion",
+      "title": "Inversion",
+      "category": "decision_analysis",
+      "discipline": "Mathematics & Philosophy",
+      "problem_types": ["decide", "risk", "diagnose"],
+      "domains": ["software", "architecture", "business", "personal"],
+      "triggers": ["prevent failure", "pre-mortem", "worst-case", "what could go wrong", "avoid disaster", "anti-goals"],
+      "description": "Invert, always invert. Instead of asking how to succeed, identify and eliminate all paths that guarantee failure.",
+      "path": "models/decision_analysis/inversion.md"
+    },
+    {
+      "id": "first_principles",
+      "title": "First Principles Reasoning",
+      "category": "decision_analysis",
+      "discipline": "Physics & Philosophy",
+      "problem_types": ["create", "understand", "decide"],
+      "domains": ["software", "architecture", "business"],
+      "triggers": ["break down to fundamentals", "challenge convention", "from scratch", "physics limits", "ground truth"],
+      "description": "Boil things down to their most fundamental, irreducible truths and reason up from there, rather than reasoning by analogy.",
+      "path": "models/decision_analysis/first_principles.md"
+    },
+    {
+      "id": "pre_mortem",
+      "title": "Pre-Mortem Analysis",
+      "category": "decision_analysis",
+      "discipline": "Cognitive Psychology (Gary Klein)",
+      "problem_types": ["risk", "decide"],
+      "domains": ["software", "architecture", "business"],
+      "triggers": ["before launch", "project failure", "stress test", "risk mitigation", "what kills this"],
+      "description": "Assume the project has failed catastrophically 12 months in the future. Write the comprehensive post-mortem today to uncover hidden failure vectors.",
+      "path": "models/decision_analysis/pre_mortem.md"
+    },
+    {
+      "id": "reversibility_two_way_doors",
+      "title": "Decision Reversibility (Two-Way Doors)",
+      "category": "decision_analysis",
+      "discipline": "Decision Theory (Jeff Bezos)",
+      "problem_types": ["decide", "optimize"],
+      "domains": ["software", "architecture", "business"],
+      "triggers": ["reversible", "irreversible", "type 1 decision", "type 2 decision", "speed vs caution", "door"],
+      "description": "Distinguish between Type 1 (one-way doors, high consequence, irreversible) and Type 2 (two-way doors, low consequence, reversible) decisions.",
+      "path": "models/decision_analysis/reversibility_two_way_doors.md"
+    },
+    {
+      "id": "opportunity_cost",
+      "title": "Opportunity Cost",
+      "category": "decision_analysis",
+      "discipline": "Economics",
+      "problem_types": ["decide", "optimize"],
+      "domains": ["software", "business", "personal"],
+      "triggers": ["what are we giving up", "tradeoff", "next best alternative", "time allocation", "build vs buy"],
+      "description": "The true economic cost of choosing option X is the value of the best alternative foregone by not choosing it.",
+      "path": "models/decision_analysis/opportunity_cost.md"
+    },
+    {
+      "id": "chestertons_fence",
+      "title": "Chesterton's Fence",
+      "category": "strategic_risk",
+      "discipline": "Philosophy & Political Thought",
+      "problem_types": ["risk", "understand", "decide"],
+      "domains": ["software", "architecture", "business"],
+      "triggers": ["refactor legacy code", "remove rule", "why does this exist", "delete old code", "legacy constraint"],
+      "description": "Do not remove a fence, rule, or constraint until you understand completely why it was put there in the first place.",
+      "path": "models/strategic_risk/chestertons_fence.md"
+    },
+    {
+      "id": "cynefin_framework",
+      "title": "Cynefin Framework",
+      "category": "strategic_risk",
+      "discipline": "Complexity Science (Dave Snowden)",
+      "problem_types": ["diagnose", "understand", "decide"],
+      "domains": ["software", "architecture", "strategy"],
+      "triggers": ["clear vs complex", "chaotic incident", "probe sense respond", "domain classification", "ambiguity"],
+      "description": "Classify problems into Clear (sense-categorize-respond), Complicated (sense-analyze-respond), Complex (probe-sense-respond), or Chaotic (act-sense-respond).",
+      "path": "models/strategic_risk/cynefin_framework.md"
+    },
+    {
+      "id": "lindy_effect",
+      "title": "The Lindy Effect",
+      "category": "strategic_risk",
+      "discipline": "Probability & Risk (Nassim Taleb)",
+      "problem_types": ["decide", "understand"],
+      "domains": ["software", "architecture", "strategy"],
+      "triggers": ["tech stack longevity", "how long will this last", "aging technology", "proven vs shiny", "library choice"],
+      "description": "For non-perishable entities (ideas, technologies, books), life expectancy is proportional to current age. Older surviving technologies outlast newer ones.",
+      "path": "models/strategic_risk/lindy_effect.md"
+    },
+    {
+      "id": "via_negativa",
+      "title": "Via Negativa (Improvement by Subtraction)",
+      "category": "strategic_risk",
+      "discipline": "Philosophy & Risk (Nassim Taleb)",
+      "problem_types": ["optimize", "decide"],
+      "domains": ["software", "architecture", "personal"],
+      "triggers": ["remove complexity", "stop doing", "subtraction", "code deletion", "declutter"],
+      "description": "Improvement is achieved by subtracting defects, removing unnecessary code, and eliminating failure paths rather than adding features.",
+      "path": "models/strategic_risk/via_negativa.md"
+    },
+    {
+      "id": "antifragility",
+      "title": "Antifragility",
+      "category": "strategic_risk",
+      "discipline": "Risk Engineering (Nassim Taleb)",
+      "problem_types": ["risk", "architecture", "decide"],
+      "domains": ["software", "architecture", "strategy"],
+      "triggers": ["gain from disorder", "convexity", "stress test", "robust vs resilient", "chaos engineering"],
+      "description": "Antifragile systems gain strength and improve from volatility, shocks, and stressors, whereas fragile systems break under stress.",
+      "path": "models/strategic_risk/antifragility.md"
+    },
+    {
+      "id": "confirmation_bias",
+      "title": "Confirmation Bias",
+      "category": "cognitive_biases",
+      "discipline": "Cognitive Psychology",
+      "problem_types": ["diagnose", "understand"],
+      "domains": ["business", "personal", "strategy"],
+      "triggers": ["cherry picking", "agreeable data", "ignoring counter evidence", "validation seeking", "echo chamber"],
+      "description": "The tendency to search for, interpret, favor, and recall information in a way that confirms one's preexisting beliefs or hypotheses.",
+      "path": "models/cognitive_biases/confirmation_bias.md"
+    },
+    {
+      "id": "sunk_cost_fallacy",
+      "title": "Sunk Cost Fallacy",
+      "category": "cognitive_biases",
+      "discipline": "Behavioral Economics",
+      "problem_types": ["decide", "understand"],
+      "domains": ["software", "business", "personal"],
+      "triggers": ["we already spent so much", "too late to turn back", "cut losses", "abandon project", "escalation of commitment"],
+      "description": "Continuing an endeavor once an investment in money, effort, or time has been made, rather than evaluating forward-looking costs and benefits.",
+      "path": "models/cognitive_biases/sunk_cost_fallacy.md"
+    },
+    {
+      "id": "survivorship_bias",
+      "title": "Survivorship Bias",
+      "category": "cognitive_biases",
+      "discipline": "Statistics & Military History (Abraham Wald)",
+      "problem_types": ["diagnose", "understand"],
+      "domains": ["business", "software", "strategy"],
+      "triggers": ["looking at successful examples", "unseen failures", "armor on planes", "startup success stories"],
+      "description": "Concentrating on the people or things that passed some selection process while overlooking those that did not, leading to false conclusions.",
+      "path": "models/cognitive_biases/survivorship_bias.md"
+    },
+    {
+      "id": "incentive_caused_bias",
+      "title": "Incentive-Caused Bias",
+      "category": "cognitive_biases",
+      "discipline": "Psychology & Economics (Charlie Munger)",
+      "problem_types": ["understand", "diagnose"],
+      "domains": ["business", "personal", "strategy"],
+      "triggers": ["why do they do this", "perverse incentive", "sales alignment", "conflicting interest", "misaligned goals"],
+      "description": "Never, ever, think about something else when you should be thinking about the power of incentives. People rationalize actions that benefit their wallet or status.",
+      "path": "models/cognitive_biases/incentive_caused_bias.md"
+    },
+    {
+      "id": "hanlons_razor",
+      "title": "Hanlon's Razor",
+      "category": "cognitive_biases",
+      "discipline": "Philosophy & Communication",
+      "problem_types": ["diagnose", "understand"],
+      "domains": ["personal", "business", "software"],
+      "triggers": ["are they sabotaging", "malicious intent", "bad communication", "incompetence vs malice", "paranoia"],
+      "description": "Never attribute to malice that which is adequately explained by neglect, miscommunication, or incompetence.",
+      "path": "models/cognitive_biases/hanlons_razor.md"
+    },
+    {
+      "id": "gall_law",
+      "title": "Gall's Law",
+      "category": "first_principles_engineering",
+      "discipline": "Systems Engineering (John Gall)",
+      "problem_types": ["create", "architecture", "decide"],
+      "domains": ["software", "architecture"],
+      "triggers": ["grand redesign", "rewrite from scratch", "complex architecture", "big bang release", "overengineering"],
+      "description": "A complex system that works is invariably found to have evolved from a simple system that worked. A complex system designed from scratch never works.",
+      "path": "models/first_principles_engineering/gall_law.md"
+    },
+    {
+      "id": "conways_law",
+      "title": "Conway's Law",
+      "category": "first_principles_engineering",
+      "discipline": "Computer Science & Organization Design",
+      "problem_types": ["architecture", "diagnose"],
+      "domains": ["software", "architecture", "business"],
+      "triggers": ["microservices vs monolith", "team boundaries", "org chart architecture", "api boundaries", "team communication"],
+      "description": "Organizations that design systems are constrained to produce designs which are copies of the communication structures of these organizations.",
+      "path": "models/first_principles_engineering/conways_law.md"
+    },
+    {
+      "id": "goodharts_law",
+      "title": "Goodhart's Law",
+      "category": "first_principles_engineering",
+      "discipline": "Economics & Data Science",
+      "problem_types": ["diagnose", "optimize"],
+      "domains": ["software", "business"],
+      "triggers": ["gaming the metric", "kpi distortion", "proxy metric", "lines of code", "vanity metrics"],
+      "description": "When a measure becomes a target, it ceases to be a good measure because participants alter their behavior to optimize for the proxy rather than the real goal.",
+      "path": "models/first_principles_engineering/goodharts_law.md"
+    },
+    {
+      "id": "pareto_principle",
+      "title": "The Pareto Principle (80/20 Rule)",
+      "category": "first_principles_engineering",
+      "discipline": "Mathematics & Economics (Vilfredo Pareto)",
+      "problem_types": ["optimize", "decide"],
+      "domains": ["software", "business", "personal"],
+      "triggers": ["vital few", "trivial many", "power law", "diminishing returns", "where to focus 80/20"],
+      "description": "For many outcomes, roughly 80% of consequences come from 20% of causes. Focus radically on the vital few inputs that generate the vast majority of value.",
+      "path": "models/first_principles_engineering/pareto_principle.md"
+    },
+    {
+      "id": "occam_razor",
+      "title": "Occam's Razor",
+      "category": "first_principles_engineering",
+      "discipline": "Philosophy & Logic",
+      "problem_types": ["diagnose", "decide"],
+      "domains": ["software", "architecture", "personal"],
+      "triggers": ["competing hypotheses", "simplest explanation", "overcomplicating", "unnecessary assumptions", "parsimony"],
+      "description": "Entities should not be multiplied beyond necessity. When presented with competing hypotheses, choose the one that makes the fewest assumptions.",
+      "path": "models/first_principles_engineering/occam_razor.md"
+    }
+  ]
+}

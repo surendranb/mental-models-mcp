@@ -1,0 +1,70 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mental-models-mcp"
+version = "0.1.0"
+description = "Multi-disciplinary mental models, cognitive orientation coaching, and dialectical reasoning engine for AI agents and humans. Zero API keys."
+readme = "README.md"
+license = "MIT"
+authors = [
+  {name = "Surendran B", email = "reachsuren@gmail.com"}
+]
+requires-python = ">=3.10"
+dependencies = [
+  "mcp>=2.0.0,<3",
+  "requests>=2.31.0",
+]
+keywords = [
+  "mental-models",
+  "munger-latticework",
+  "decision-making",
+  "cognitive-coaching",
+  "systems-thinking",
+  "first-principles",
+  "inversion",
+  "mcp",
+  "mcp-server",
+  "model-context-protocol",
+  "ai-agent",
+  "claude",
+  "claude-code",
+  "cursor"
+]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Developers",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+
+[project.urls]
+Homepage = "https://mental-models.builditwithai.xyz"
+Repository = "https://github.com/surendranb/mental-models-mcp"
+Issues = "https://github.com/surendranb/mental-models-mcp/issues"
+
+[project.scripts]
+mental-models-mcp = "mental_models_mcp.server:main"
+mental-models = "mental_models_mcp.server:main"
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.0.0",
+  "pytest-asyncio>=0.23.0",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+mental_models_mcp = ["py.typed", "data/*.json"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
+testpaths = ["tests"]
